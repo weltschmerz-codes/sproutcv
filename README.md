@@ -1,3 +1,70 @@
-# sproutcv
+# SproutCV
 
-The impact of different stress factors on plant growth can be assessed through the measurement of sprout length. Measuring the sprout length can be done through traditional methods (e.g. use of calipers) or through image analysis. The use of ImageJ, an image analysis program developed at National Institute of Health, is an established validated way to do the measurement (Schneider et al., 2012). But the line segmentation measure feature to measure the sprouts is very inefficient and time consuming when dealing with hundreds of samples. In this work we developed a computer vision based approach, SproutCV, to automate the measurement process. After image preprocessing, where mean shift filtering, grayscale, Gaussian blur, and morphological operations were applied, Otsu's thresholding was implemented to identify sprout regions. We then skeletonized the output image and converted it to a network graph, wherein each pixel in an 8-connectivity is the node and the Euclidean distance between each pixel is the weighted edge. The skeleton lines were simplified further using Douglas-Peucker algorithm to remove unnecessary pixels. Dijkstra’s algorithm was utilized to find the two farthest nodes in the graph and the shortest path between them. The length of this final graph path was measured, and this represented the sprout length.
+SproutCV is a local desktop tool for automated measurement of sprout lengths from images.  
+It uses computer vision techniques to detect and skeletonize sprouts, calculates their lengths in pixels and millimeters using a calibration CSV, and provides visualizations for easy verification.  
+
+While currently designed as a local desktop application, SproutCV may serve as an open-source research tool for plant phenotyping and related studies in future iterations.
+
+---
+
+## Features
+
+- Detects sprouts in images and measures their lengths automatically
+- Handles batch processing of multiple images with calibration data
+- Provides visual outputs:
+  - Skeletonized sprouts
+  - Annotated images with sprout lengths
+- GUI supports drag-and-drop or file browsing for images and calibration CSV
+- Modular design:
+  - **GUI**: Desktop interface
+  - **Core**: Sprout measurement and analysis logic
+  - **IO**: File handling and data saving
+  - **Utils**: Graph and image utilities
+
+---
+
+## Installation
+
+### Requirements
+
+- Python 3.10+
+- OpenCV (`opencv-python`)
+- NumPy
+- Pandas
+- NetworkX
+- scikit-image
+- Shapely
+- Tkinter (usually included in Python)
+- `tkinterdnd2` for drag-and-drop support
+
+Install dependencies with:
+
+```bash
+pip install opencv-python numpy pandas networkx scikit-image shapely tkinterdnd2
+```
+
+---
+
+## Input and Output Files
+
+### Input
+Calibration CSV Format
+| file_name | pixel | distance |
+|-----------|-------|----------|
+| image1    | 120   | 50.0     |
+| image2    | 110   | 50.0     |
+
+- file_name – Image name without extension.
+- pixel – Pixel length of calibration object.
+- distance – Real-world length (mm) corresponding to the pixel value.
+Pixel measurement can be done through image processing programs like ImageJ.
+
+### Output
+For each image, SproutCV generates:
+- skeletons_<image_name>.jpg – Skeletonized sprouts
+- length_measurement_<image_name>.jpg – Annotated image with sprout lengths
+- sprout_lengths_<image_name>.csv – Sprout lengths in pixels and mm
+Results are saved in a folder named after the image.
+
+
+
