@@ -1,6 +1,10 @@
+## ⚠️ Legacy Branch
+
+The `legacy` branch is deprecated and kept for reference only.
+
 # SproutCV
 
-SproutCV is a local desktop tool for automated measurement of sprout lengths from images.  
+SproutCV is a local desktop tool for semi-automated measurement of sprout lengths from images.  
 It uses computer vision techniques to detect and skeletonize sprouts, calculates their lengths in pixels and millimeters using a calibration CSV, and provides visualizations for easy verification.  
 
 While currently designed as a local desktop application, SproutCV may serve as an open-source research tool for plant phenotyping and related studies in future iterations.
