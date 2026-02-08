@@ -1,10 +1,10 @@
-# SproutCV - Automated Sprout Length Measurement
+# SproutCV - Sprout Length Measurement through Computer Vision
 
 ![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![OpenCV](https://img.shields.io/badge/opencv-4.8+-red.svg)
 
-SproutCV is a desktop application for automated measurement of sprout lengths from images using computer vision techniques. It provides a user-friendly graphical interface for batch processing sprout images with calibrated measurements.
+SproutCV is a desktop application for semi-automated measurement of sprout lengths from images using computer vision techniques. It provides a user-friendly graphical interface for batch processing sprout images with calibrated measurements.
 
 ## Features
 
@@ -318,11 +318,11 @@ sproutcv/
 
 ```
 Input Image → Preprocessing → Contour Detection → Skeletonization
-     ↓              ↓                ↓                  ↓
-Validation    Mean Shift      Find Contours      Skeleton Graph
-     ↓         Gaussian Blur   Filter by Area     Find Endpoints
-Calibration   Thresholding    Group by Rows      Shortest Path
-     ↓         Morphology           ↓                  ↓
+                    ↓                ↓                  ↓
+               Mean Shift      Find Contours      Skeleton Graph
+               Gaussian Blur   Filter by Area     Find Endpoints
+               Thresholding    Group by Rows      Shortest Path
+               Morphology           ↓                  ↓
 Results ← Measurement ← Path Simplification ← Length Calculation
 ```
 
